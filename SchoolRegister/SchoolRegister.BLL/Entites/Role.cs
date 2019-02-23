@@ -7,6 +7,9 @@ namespace SchoolRegister.BLL.Entites
 {
     class Role : IdentityRole<int>
     {
-
+        public Role()
+        { }
+        public Role(string name) :base(name)
+        { }
     }
 }

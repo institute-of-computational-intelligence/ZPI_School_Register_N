@@ -6,5 +6,7 @@ namespace SchoolRegister.BLL.Entites
 {
     class Group
     {
+        int Id { get; set; }
+        string Name { get; set; }
     }
 }

@@ -4,7 +4,11 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entites
 {
-    class GradeScale
+    enum GradeScale
     {
+        NDST = 2 ,
+        DST,
+        DB,
+        BDB
     }
 }
