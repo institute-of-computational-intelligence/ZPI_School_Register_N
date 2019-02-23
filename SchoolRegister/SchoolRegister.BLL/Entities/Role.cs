@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Role
+    public class Role : Microsoft.AspNetCore.Identity.IdentityRole<int>
     {
+        Role() { }
+
+        Role(string name) { }
     }
 }

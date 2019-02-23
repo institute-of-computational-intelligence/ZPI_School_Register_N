@@ -4,7 +4,13 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Student
+    public class Student : User
     {
+        public double AverageGrade { get; }
+        IDictionary<string, double> AverageGradePerSubject { get; }
+
+        IList<Grade> Grades { get; set; }
+
+        Group Group { get; set; }
     }
 }

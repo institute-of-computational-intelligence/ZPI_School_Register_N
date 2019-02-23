@@ -5,7 +5,12 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    public class Role : IdentityRole<int>
+    public class User : IdentityRole<int>
     {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        DateTime RegistrationDate { get; set; }
     }
 }
