@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BAL.Entities
 {
-    class Teacher : User
+    public class Teacher : User
     {
         IList<Subject> Subjects { get; set; }
         string Title { get; set; }

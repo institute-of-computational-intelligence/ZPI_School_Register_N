@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolRegister.BAL.Entities
 {
-    class Subject
+    public class Subject
     {
-        string Descryption { get; set; }
-        int Id { get; set; }
-        string Name { get; set; }
-        Teacher Teacher { get; set; }
+        public string Descryption { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public  Teacher Teacher { get; set; }
+        [ForeignKey("Teacher")]
+        public int TeacherId { get; set; }
+
+        public IList<Group> Groups { get; set; }
+
+
     }
 }

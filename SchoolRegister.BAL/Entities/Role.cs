@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SchoolRegister.BAL.Entities
 {
-    class Role : IdentityRole<int>
+    public class Role : IdentityRole<int>
     {
         Role() { }
         Role(string name) { }

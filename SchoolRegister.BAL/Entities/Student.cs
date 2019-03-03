@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace SchoolRegister.BAL.Entities
 {
-    class Student : User
+    public class Student : User
     {
-        double AverageGrade { get; }
-        IDictionary<string, double> AverangeGradePerSubject { get; }
-        IList<Grade> Grades { get; set; }
+        [NotMapped]
+        public double AverageGrade => Math.Round(Grades.Average(g => (int)g.GradeValue), 1);
+        public IDictionary<string, double> AverangeGradePerSubject { get; }
+        public IList<Grade> Grades { get; set; }
+        public Group Group { get; set; }
 
-        Group Group { get; set; }
+        [ForeignKey("Group")]
+        public int GroupId { get; set; }
+
+        public Parent Parent { get; set; }
+        [ForeignKey("Parent")]
+        public int ParentId { get; set; }
+
     }
 }
