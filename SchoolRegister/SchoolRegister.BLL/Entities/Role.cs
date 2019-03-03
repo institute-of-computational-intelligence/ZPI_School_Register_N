@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolRegister.BLL.Entites
+namespace SchoolRegister.BLL.Entities
 {
-    class Role : IdentityRole<int>
+    public class Role : IdentityRole<int>
     {
         public Role()
         { }

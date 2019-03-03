@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolRegister.BLL.Entites
+namespace SchoolRegister.BLL.Entities
 {
-    class Parent :User 
+    public class Parent :User 
     {
         IList<Student> Students { get; set; }
     }
