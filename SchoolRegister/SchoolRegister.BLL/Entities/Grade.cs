@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Grade
+    public class Grade
     {
         public DateTime DateOflssue { get; set; }
         public GradeScale GradeValue { get; set; }
