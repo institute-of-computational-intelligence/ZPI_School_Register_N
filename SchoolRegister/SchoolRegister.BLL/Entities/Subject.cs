@@ -13,5 +13,7 @@ namespace SchoolRegister.BLL.Entities
 
         public Teacher Teacher { get; set; }
 
+        [ForeignKey("Teacher")]
+        public int TeacherId { get; set; }
     }
 }

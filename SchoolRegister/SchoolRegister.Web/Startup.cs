@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SchoolRegister.BLL.Entities;
+using SchoolRegister.DAL.EF;
 using SchoolRegister.ViewModels.VMs;
 
 namespace SchoolRegister.Web
@@ -57,6 +58,23 @@ namespace SchoolRegister.Web
                 options.Cookie.HttpOnly = true;
             });
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(_connectionString);  // SQL SERVER
+                //options.UseMySql(_connectionString); // My SQL
+            });
+
+            services.AddIdentity<User, Role>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.User.RequireUniqueEmail = false;
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+
             services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
             var corsBuilder = new CorsPolicyBuilder();
@@ -101,7 +119,11 @@ namespace SchoolRegister.Web
 
             #region Our Services
 
-           
+            var cs = new ConnectionStringDto() { ConnectionString = _connectionString };
+            services.AddSingleton(cs);
+
+            services.AddScoped<DbContext, ApplicationDbContext>();
+            services.AddScoped<DbContextOptions<ApplicationDbContext>>();
 
             #endregion
             Services = services;

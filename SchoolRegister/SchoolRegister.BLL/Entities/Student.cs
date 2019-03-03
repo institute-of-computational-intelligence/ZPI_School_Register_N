@@ -9,11 +9,15 @@ namespace SchoolRegister.BLL.Entities
     {
         public Group Group { get; set; }
 
+        [ForeignKey("Group")]
+        public int GroupId { get; set; }
+
         public IList<Grade> Grades { get; set; }
 
-
+        [NotMapped]
         public double AverageGrade => Math.Round(Grades.Average(g => (int)g.GradeValue), 1);
 
+        [NotMapped]
         public IDictionary<string, double> AverageGradePerSubject => Grades
             .GroupBy(g => g.Subject.Name)
             .Select(g => new
