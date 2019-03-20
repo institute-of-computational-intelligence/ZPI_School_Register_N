@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Subject
+    public class Subject
     {
         string Description { get; set; }
         int Id { get; set; }

@@ -4,9 +4,10 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Group
+    public class Group
     {
         int Id { get; set; }
         string Name { get; set; }
+        public IList<Student> Students { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class User : IdentityUser<int>
+    public class User : IdentityUser<int>
     {
         string FirstName { get; set; }
         string LastName { get; set; }
