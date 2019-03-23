@@ -6,7 +6,7 @@ namespace SchoolRegister.BLL.Entities
 {
     public class Subject
     {
-        public string Decription { get; set; }
+        public string Description { get; set; }
         public IList<Grade> Grades { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }

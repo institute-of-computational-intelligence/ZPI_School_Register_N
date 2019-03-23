@@ -49,7 +49,10 @@ namespace SchoolRegister.DAL.EF
                 .HasOne(s => s.Subject)
                 .WithMany(sg => sg.SubjectGroups)
                 .HasForeignKey(s => s.SubjectId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);            modelBuilder.Entity<Group>()
+                .Property(g => g.Name)                .IsRequired();            modelBuilder.Entity<Subject>()
+                .Property(g => g.Name)                .IsRequired();            modelBuilder.Entity<Subject>()
+                .Property(g => g.Description)                .IsRequired();
         }
     }
 }
