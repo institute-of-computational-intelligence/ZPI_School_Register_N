@@ -49,6 +49,8 @@ namespace SchoolRegister.Web
         {
             #region Framework Services
             // Add framework services.
+            services.Configure<JwtIssuerOptions>(options => Configuration.GetSection("JwtIssuerOptions").Bind(options));
+
             services.AddOptions();
             services.AddApplicationInsightsTelemetry(Configuration);
             services.Configure<CookiePolicyOptions>(options =>
@@ -88,31 +90,65 @@ namespace SchoolRegister.Web
             services.AddSingleton(cs);
             services.AddScoped<DbContext, ApplicationDbContext>();
             services.AddScoped<DbContextOptions<ApplicationDbContext>>();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "Jwt";
+                options.DefaultChallengeScheme = "Jwt";
+            }).AddJwtBearer("Jwt", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    //ValidAudience = "the audience you want to validate",
+                    ValidateIssuer = false,
+                    //ValidIssuer = "the isser you want to validate",
+
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtIssuerOptions:SecretKey"])),
+
+                    ValidateLifetime = true, //validate the expiration and not before values in the token
+
+                    ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
+                };
+            });
             #endregion
             Services = services;
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
+            });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseSession();
-            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                name: "default",
-                template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
     }
