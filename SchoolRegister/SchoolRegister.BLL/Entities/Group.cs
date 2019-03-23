@@ -8,7 +8,7 @@ namespace SchoolRegister.BLL.Entities
     {
         public int Id
         { get; set; }
-        public String Name
+        public string Name
         { get; set; }
     }
 }

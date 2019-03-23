@@ -7,6 +7,6 @@ namespace SchoolRegister.BLL.Entities
     public class Role
     {
        Role() { }
-       Role(String name) { }
+       Role(string name) { }
     }
 }

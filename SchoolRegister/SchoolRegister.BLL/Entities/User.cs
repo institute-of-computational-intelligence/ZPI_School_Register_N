@@ -6,9 +6,9 @@ namespace SchoolRegister.BLL.Entities
 {
     public class User
     {
-        public String FirstName
+        public string FirstName
         { get; set;}
-        public String LastName
+        public string LastName
         { get; set; }
         public DateTime RegistrationDate
         { get; set; }
