@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SchoolRegister.DAL.EF
 {
-    class ApplicationDbContext : IdentityDbContext<User, Role, int>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
         private readonly ConnectionStringDto _connectionStringDto;
 
@@ -32,15 +32,24 @@ namespace SchoolRegister.DAL.EF
             modelBuilder.Entity<User>()
                 .ToTable("AspNetUsers")
                 .HasDiscriminator<int>("UserType")
+                .HasValue<User>(0)
                 .HasValue<Student>(1)
                 .HasValue<Parent>(2)
                 .HasValue<Teacher>(3);
 
-            modelBuilder.Entity<Group>()
-                .HasMany(g => g.Students)
-                .WithOne(s => s.Group)
-                .HasForeignKey(x => x.GroupId)
-                .IsRequired();
+            modelBuilder.Entity<SubjectGroup>()
+                .HasKey(sg => new { sg.GroupId, sg.SubjectId });
+
+            modelBuilder.Entity<SubjectGroup>()
+                .HasOne(g => g.Group)
+                .WithMany(sg => sg.SubjectGroups)
+                .HasForeignKey(g => g.GroupId);
+
+            modelBuilder.Entity<SubjectGroup>()
+                .HasOne(s => s.Subject)
+                .WithMany(sg => sg.SubjectGroups)
+                .HasForeignKey(s => s.SubjectId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
