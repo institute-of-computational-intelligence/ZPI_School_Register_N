@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using SchoolRegister.BLL.Entities;
+using System;
 
-namespace SchoolRegister.BLL.Entities
+namespace SchoolRegister.ViewModels.DTOs
 {
-    public class Grade
+    public class AddOrUpdateGradeDto
     {
-        [Key]
         public DateTime DateOfIssue { get; set; }
         public GradeScale GradeValue { get; set; }
         public Subject Subject { get; set; }
