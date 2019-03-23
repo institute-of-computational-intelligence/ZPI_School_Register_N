@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    class Role
+    public class Role
     {
        Role() { }
        Role(String name) { }
