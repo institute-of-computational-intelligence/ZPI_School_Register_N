@@ -6,6 +6,6 @@ namespace SchoolRegister.BLL.Entities
 {
     public class Parent :User 
     {
-        IList<Student> Students { get; set; }
+        public IList<Student> Students { get; set; }
     }
 }

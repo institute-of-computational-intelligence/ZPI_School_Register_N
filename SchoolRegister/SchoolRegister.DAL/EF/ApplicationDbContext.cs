@@ -39,6 +39,19 @@ namespace SchoolRegister.DAL.EF
                 .HasValue<Student>(1)
                 .HasValue<Parent>(2)
                 .HasValue<Teacher>(3);
+
+            modelBuilder.Entity<SubjectGroup>()
+                .HasKey(sg => new { sg.GroupId, sg.SubjectId });
+            modelBuilder.Entity<SubjectGroup>()
+                .HasOne(g => g.Group)
+                .WithMany(sg => sg.SubjectGroups)
+                .HasForeignKey(g => g.GroupId);
+
+            modelBuilder.Entity<SubjectGroup>()
+                .HasOne(s => s.Subject)
+                .WithMany(sg => sg.SubjectGroups)
+                .HasForeignKey(s => s.SubjectId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
     }

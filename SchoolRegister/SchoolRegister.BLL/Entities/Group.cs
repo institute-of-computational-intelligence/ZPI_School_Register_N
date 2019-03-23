@@ -6,8 +6,9 @@ namespace SchoolRegister.BLL.Entities
 {
     public class Group
     {
-        int Id { get; set; }
-        string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public IList<Student> Students { get; set; }
+        public IList<SubjectGroup> SubjectGroups { get; set; }
     }
 }

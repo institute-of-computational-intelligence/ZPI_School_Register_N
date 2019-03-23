@@ -6,15 +6,14 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    public class Grade
+    public class SubjectGroup
     {
         [Key]
-        public DateTime DateOfIssue { get; set; }
-        public GradeScale GradeValue { get; set; }
-
+        public int GroupId { get; set; }
+        public Group Group { get; set; }
+        [Key]
+        public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        [ForeignKey("Subject")]
-        public int SubjectId { get; set; }
     }
 }
