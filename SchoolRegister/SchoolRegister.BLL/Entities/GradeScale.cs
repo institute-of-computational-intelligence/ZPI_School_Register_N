@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    public enum GradeScales
+    public enum GradeScale
     {
         NDST,
         DST,
