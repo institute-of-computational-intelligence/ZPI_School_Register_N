@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SchoolRegister.BLL.Entities
 {
-    public class Student
+    public class Student : User
     {
         public double AverageGrade
         { get; }
