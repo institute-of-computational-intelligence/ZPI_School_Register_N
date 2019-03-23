@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
- // bla bla
+ // bla blaasas
 namespace SchoolRegister.BLL.Entities
 {
     public class Grade
