@@ -6,7 +6,8 @@ namespace SchoolRegister.BLL.Entities
 {
     public class Teacher : User
     {
-        IList<Subject> Subjects { get; set; }
-        string Title { get; set; }
+        public IList<Subject> Subjects { get; set; }
+        public string Title { get; set; }
+
     }
 }

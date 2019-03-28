@@ -10,14 +10,10 @@ namespace SchoolRegister.DAL.EF
     public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
         private readonly ConnectionStringDto _connectionStringDto;
-
+        // Table properties e.g
         public virtual DbSet<Grade> Grade { get; set; }
-
-        public virtual DbSet<Group> Group { get; set; }
-
-        public virtual DbSet<Role> Role { get; set; }
-
-        public virtual DbSet<Subject> Subject { get; set; }
+        // other table properties
+        // ……
         public ApplicationDbContext(ConnectionStringDto connectionStringDto)
         {
             _connectionStringDto = connectionStringDto;
@@ -27,18 +23,30 @@ namespace SchoolRegister.DAL.EF
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(_connectionStringDto.ConnectionString);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //Fluent API commands
+            // Fluent API commands
             modelBuilder.Entity<User>()
-                .ToTable("AspNetUsers")
-                .HasDiscriminator<int>("UserType")
-                .HasValue<Student>(1)
-                .HasValue<Parent>(2)
-                .HasValue<Teacher>(3);
-        }
+            .ToTable("AspNetUsers")
+            .HasDiscriminator<int>("UserType")
+            .HasValue<User>(0)
+            .HasValue<Student>(1)
+            .HasValue<Parent>(2)
+            .HasValue<Teacher>(3);
 
+            modelBuilder.Entity<SubjectGroup>()
+            .HasKey(sg => new { sg.GroupId, sg.SubjectId });
+            modelBuilder.Entity<SubjectGroup>()
+            .HasOne(g => g.Group)
+            .WithMany(sg => sg.SubjectGroups)
+            .HasForeignKey(g => g.GroupId);
+
+            modelBuilder.Entity<SubjectGroup>()
+            .HasOne(s => s.Subject)
+            .WithMany(sg => sg.SubjectGroups)
+            .HasForeignKey(s => s.SubjectId)
+            .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

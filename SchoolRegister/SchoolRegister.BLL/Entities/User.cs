@@ -7,8 +7,8 @@ namespace SchoolRegister.BLL.Entities
 {
     public class User : IdentityUser<int>
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        DateTime RegistrationDate { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime RegistrationDate { get; set; }
     }
 }
