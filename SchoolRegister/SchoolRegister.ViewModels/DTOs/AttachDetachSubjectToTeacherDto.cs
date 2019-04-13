@@ -2,15 +2,10 @@
 
 namespace SchoolRegister.ViewModels.DTOs
 {
-    public class AddOrUpdateSubjectDto
+    public class AttachDetachSubjectToTeacherDto
     {
-        public int? Id { get; set; }
         [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string Description { get; set; }
-
+        public int SubjectId { get; set; }
         [Required]
         public int TeacherId { get; set; }
     }

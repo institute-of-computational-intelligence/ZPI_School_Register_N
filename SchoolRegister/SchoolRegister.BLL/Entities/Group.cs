@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolRegister.BLL.Entities
 {
@@ -8,7 +7,9 @@ namespace SchoolRegister.BLL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<Student> Students { get; set; }
-        public IList<SubjectGroup> SubjectGroups { get; set; }
+
+        public virtual IList<Student> Students { get; set; }
+
+        public virtual IList<SubjectGroup> SubjectGroups { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SchoolRegister.DAL.EF
+﻿namespace SchoolRegister.DAL.EF
 {
     public class ConnectionStringDto
     {
