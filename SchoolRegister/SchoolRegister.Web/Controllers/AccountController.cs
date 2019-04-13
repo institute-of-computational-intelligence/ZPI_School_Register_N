@@ -26,19 +26,21 @@ namespace SchoolRegister.Web.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly JsonSerializerSettings _serializerSettings;
+        private readonly ApplicationDbContext _dbContext;
 
-        public AccountController(ApplicationDbContext dbContext,
+        public AccountController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IOptions<JwtIssuerOptions> jwtOptions,
-            ILoggerFactory loggerFactory
+            ILoggerFactory loggerFactory,
+            ApplicationDbContext dbContext
         )
-            : base(loggerFactory, dbContext)
+            : base(loggerFactory)
         {
             _userManager = userManager;
             _jwtOptions = jwtOptions.Value;
             _signInManager = signInManager;
-
+            _dbContext = dbContext;
             _serializerSettings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented
@@ -46,7 +48,8 @@ namespace SchoolRegister.Web.Controllers
         }
 
         // GET: api/values
-        [HttpPost("[action]")]
+        [AllowAnonymous]
+        [HttpPost]
         public async Task<IActionResult> Register([FromForm] RegisterUserDto dto)
         {
             try
@@ -71,8 +74,8 @@ namespace SchoolRegister.Web.Controllers
             }
         }
 
-        [HttpPost("[action]")]
         [Authorize(Roles = "Administrator")]
+        [HttpPost]
         public async Task<IActionResult> AddUserToRole([FromForm]UserToRoleDto dto)
         {
             try
@@ -102,8 +105,8 @@ namespace SchoolRegister.Web.Controllers
             }
         }
 
-        [HttpPost("[action]")]
         [Authorize(Roles = "Administrator")]
+        [HttpPost]
         public async Task<IActionResult> DetachUserFromRole([FromForm]UserToRoleDto dto)
         {
             try
@@ -133,14 +136,14 @@ namespace SchoolRegister.Web.Controllers
             }
         }
 
-        [HttpPost("[action]")]
         [AllowAnonymous]
+        [HttpPost]
         public IActionResult Login([FromForm] LoginUserVm applicationUser)
         {
-            if (string.IsNullOrWhiteSpace(applicationUser.Login) || string.IsNullOrWhiteSpace(applicationUser.Password))
+            if (string.IsNullOrWhiteSpace(applicationUser.Login) || string.IsNullOrWhiteSpace(applicationUser.Password) || !ModelState.IsValid)
             {
                 _logger.LogInformation(
-                    $"Login or password are empty.");
+                    $"Login or password are empty or invalid.");
                 return BadRequest("Invalid credentials");
             }
             var result = _signInManager
@@ -184,7 +187,7 @@ namespace SchoolRegister.Web.Controllers
         {
             var authenticatedUser = ((ClaimsIdentity)User?.Identity)?.Claims?.First()?.Value;
             if (authenticatedUser == null) return Unauthorized();
-            var user = _dbContext.Users.FirstOrDefault(u => u.UserName == authenticatedUser);
+            var user =  _dbContext.Users.FirstOrDefault(u => u.UserName == authenticatedUser);
             if (user == null) return StatusCode(500, "Given user does not exist in the database.");
             var userIndividualVm = Mapper.Map<BaseUserVm>(user);
             return Ok(userIndividualVm);

@@ -1,9 +1,8 @@
 ﻿import React, { Component } from 'react';
 import './Auth.css';
 import AuthService from './AuthService';
-import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class Register extends Component {
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
@@ -29,16 +28,23 @@ class Login extends Component {
     handleFormSubmit(e) {
         e.preventDefault();
         const localThis = this;
-        if (this.state.username !== "" && this.state.password !== "") {
-            this.Auth.login(this.state.username, this.state.password)
-                .then(() => {
-                    if (localThis.Auth.isSuccess === true) {
-                        this.props.history.replace('/');
-                    }
-                })
-                .catch(err => {
-                    alert(err);
-                });
+        if (this.state.username !== "" && this.state.password !== "" && this.state.confirmPassword !== "") {
+            if (this.state.password === this.state.confirmPassword) {
+                this.Auth.register(this.state.username, this.state.password, this.state.confirmPassword)
+                    .then((result) => {
+                        if (localThis.Auth.isSuccess === true) {
+                            alert("You are registered in the system.");
+                            this.props.history.replace('/login');
+                        }
+                    })
+                    .catch(err => {
+                        alert(err);
+                    });
+            } else {
+                alert("Password and confirm password are not the same.");
+            }
+        } else {
+            alert("Provide all data.");
         }
     }
 
@@ -46,7 +52,7 @@ class Login extends Component {
         return (
             <div className="center">
                 <div className="card">
-                <h1>{"Login"}</h1>
+                    <h1>{"Register"}</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input
                             className="form-item"
@@ -63,16 +69,23 @@ class Login extends Component {
                             onChange={this.handleChange}
                         />
                         <input
+                            className="form-item"
+                            placeholder={"confirm password"}
+                            name="confirmPassword"
+                            type="password"
+                            onChange={this.handleChange}
+                        />
+                        <input
                             className="form-submit"
-                            value={"Login"}
+                            value={"Register"}
                             type="submit"
                         />
                         <label className="" />
                     </form>
-                    <Link to={'/register'}>Register</Link>
                 </div>
             </div>
         );
     }
 }
-export default Login;
+
+export default Register;

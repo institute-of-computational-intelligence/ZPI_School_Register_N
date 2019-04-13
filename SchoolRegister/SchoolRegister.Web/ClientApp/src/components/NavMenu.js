@@ -4,8 +4,6 @@ import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 import AuthService from './Authentication/AuthService';
-//import intl from 'react-intl-universal';
-
 const Auth = new AuthService();
 
 export class NavMenu extends Component {
@@ -41,7 +39,7 @@ export class NavMenu extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
-                                    <span className="text-center center-block"> {intl.get('hello_user', {userName: this.props.user.username})}</span>
+                                    <span className="text-center center-block"> Welcome {this.props.user.username} </span>
                                     </div>
                                 </div>
                             </div>
@@ -52,6 +50,3 @@ export class NavMenu extends Component {
         );
     }
 }
-
-
-

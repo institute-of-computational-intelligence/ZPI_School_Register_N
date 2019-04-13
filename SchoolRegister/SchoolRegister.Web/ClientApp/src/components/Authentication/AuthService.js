@@ -13,19 +13,31 @@ export default class AuthService extends BaseService {
         var formData = new FormData();
         formData.append("login", username);
         formData.append("password", password);
-
         return this.fetch(`${this.domain}/Account/Login`,
             {
                 body: formData,
                 method: 'POST'
             }).then(res => {
-            this.setToken(res.access_token);
-            return Promise.resolve(res);
-        });
+                if (res !== undefined && res !== null && res.access_token !== undefined) {
+                    this.setToken(res.access_token);
+                    return Promise.resolve(res);
+                }
+            });
+    }
+
+    register(username, password, confirmPassword) {
+        var formData = new FormData();
+        formData.append("userName", username);
+        formData.append("password", password);
+        formData.append("confirmPassword", confirmPassword);
+        return this.fetch(`${this.domain}/Account/Register`,
+            {
+                body: formData,
+                method: 'POST'
+            });
     }
 
     loggedIn() {
-
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
     }

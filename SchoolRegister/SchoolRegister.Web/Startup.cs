@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SchoolRegister.BLL.Entities;
 using SchoolRegister.DAL.EF;
@@ -82,16 +83,17 @@ namespace SchoolRegister.Web
 
             services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
-            var corsBuilder = new CorsPolicyBuilder();
-            corsBuilder.AllowAnyHeader();
-            corsBuilder.WithMethods("GET", "POST", "PUT", "DELETE");
-            //corsBuilder.WithOrigins("http://localhost:4583");
-            corsBuilder.AllowCredentials();
+            // Uncomment to enable cors
+            //var corsBuilder = new CorsPolicyBuilder();
+            //corsBuilder.AllowAnyHeader();
+            //corsBuilder.WithMethods("GET", "POST", "PUT", "DELETE");
+            ////corsBuilder.WithOrigins("http://localhost:4583");
+            //corsBuilder.AllowCredentials();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowCors", corsBuilder.Build());
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowCors", corsBuilder.Build());
+            //});
 
             services.Configure<FormOptions>(x =>
             {
@@ -164,7 +166,7 @@ namespace SchoolRegister.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -174,7 +176,9 @@ namespace SchoolRegister.Web
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            loggerFactory.AddFile("Log/SchoolRegister-{Date}.txt");
+            app.UseSession();
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

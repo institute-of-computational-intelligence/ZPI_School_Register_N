@@ -14,10 +14,11 @@ export default class BaseService {
         }
         this.domain = domain || hostUrl;
         this.fetch = this.fetch.bind(this);
-
+        this.isSuccess = true;
     }
 
     fetch(url, options, token) {
+
         const headers = {
             'Accept': 'text/plain'
         };
@@ -25,30 +26,35 @@ export default class BaseService {
         if (token !== null) {
             headers['Authorization'] = 'Bearer ' + token;
         }
-
+        var localThis = this;
         return fetch(url,
             {
                 headers,
                 ...options
             })
-            .then(this._checkStatus)
-            .then(response => response.json())
-            .catch(() => { });
+            .then(response => { return this._checkStatus(response, localThis); })
+            .then(response => {
+                Promise.resolve(response);
+                if (response !== null && response !== undefined) {
+                    localThis.isSuccess = true;
+                    return response.json();
+                }
+            });
 
     }
 
-    _checkStatus(response) {
+    _checkStatus(response, localThis) {
         // raises an error in case response status is not a success
-        if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
-            return response;
-        } else {
-            var error = new Error(response.statusText);
+        if (!response.ok) {
+            const error = new Error(response.statusText);
             error.response = response;
+            localThis.isSuccess = false;
             response.text().then(function (err) {
                 alert(err);
             });
-
-            // throw error;
+        }
+        if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
+            return response;
         }
     }
 }

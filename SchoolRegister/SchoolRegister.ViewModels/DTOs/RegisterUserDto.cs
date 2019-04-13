@@ -24,6 +24,5 @@ namespace SchoolRegister.ViewModels.DTOs
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = " {0} musi mieć przynajmniej {2} znaków", MinimumLength = 6)]
         public string ConfirmPassword { get; set; }
-
     }
 }

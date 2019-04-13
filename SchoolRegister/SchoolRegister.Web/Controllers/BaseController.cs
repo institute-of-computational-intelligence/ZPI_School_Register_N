@@ -9,21 +9,13 @@ namespace SchoolRegister.Web.Controllers
     [Authorize]
     // [EnableCors("AllowCors")]
     [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public abstract class BaseController : Controller
     {
-        protected readonly ApplicationDbContext _dbContext;
         protected readonly ILogger _logger;
-        protected BaseController( ILoggerFactory loggerFactory, ApplicationDbContext dbContext)
+        protected BaseController( ILoggerFactory loggerFactory)
         {
-            _dbContext = dbContext;
             _logger = loggerFactory.CreateLogger<BaseController>();
-        }
-        protected void AddErrors(IdentityResult result, string validatorName = "")
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(validatorName, error.Description);
-            }
         }
     }
 }
