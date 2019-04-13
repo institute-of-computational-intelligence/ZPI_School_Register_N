@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SchoolRegister.BLL\SchoolRegister.BLL.csproj" />
+    <Folder Include="DTOs\" />
+    <Folder Include="VMs\" />
   </ItemGroup>
 
 </Project>
