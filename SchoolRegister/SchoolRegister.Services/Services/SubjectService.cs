@@ -12,7 +12,6 @@ using System.Linq.Expressions;
 
 namespace SchoolRegister.Services.Services
 {
-
     public class SubjectService : BaseService, ISubjectServices
     {
         public SubjectService(ApplicationDbContext dbContext) : base(dbContext)
