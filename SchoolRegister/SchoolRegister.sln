@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-<<<<<<< HEAD
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.Web", "SchoolRegister.Web\SchoolRegister.Web.csproj", "{923B0205-A024-4689-9872-9CA15BBD6737}"
@@ -13,19 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.Services", "SchoolRegister.Services\SchoolRegister.Services.csproj", "{54661E9A-66DC-49E2-8B63-86F1F546E932}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.ViewModels", "SchoolRegister.ViewModels\SchoolRegister.ViewModels.csproj", "{EAE483E3-90C4-4826-B4DE-A564B2750054}"
-=======
-VisualStudioVersion = 15.0.28307.421
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.Web", "SchoolRegister.Web\SchoolRegister.Web.csproj", "{6BFF2059-E214-4803-B625-21CE3263CF7B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.BLL", "SchoolRegister.BLL\SchoolRegister.BLL.csproj", "{9DC6CF7B-C66D-4D09-951F-1516282188EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.DAL", "SchoolRegister.DAL\SchoolRegister.DAL.csproj", "{AE812A0C-771C-4EEA-BA39-F429E045D0CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.Services", "SchoolRegister.Services\SchoolRegister.Services.csproj", "{F098C741-8B14-4D2E-8BC9-1125072CC931}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRegister.ViewModels", "SchoolRegister.ViewModels\SchoolRegister.ViewModels.csproj", "{5AA64DA3-4902-4A49-A547-0B7DA3B1A4C8}"
->>>>>>> 98f1feb474bc06c1ac3fcae03211fd492ab72b62
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,7 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
 		{923B0205-A024-4689-9872-9CA15BBD6737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{923B0205-A024-4689-9872-9CA15BBD6737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{923B0205-A024-4689-9872-9CA15BBD6737}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,37 +39,11 @@ Global
 		{EAE483E3-90C4-4826-B4DE-A564B2750054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE483E3-90C4-4826-B4DE-A564B2750054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE483E3-90C4-4826-B4DE-A564B2750054}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
-		{6BFF2059-E214-4803-B625-21CE3263CF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BFF2059-E214-4803-B625-21CE3263CF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BFF2059-E214-4803-B625-21CE3263CF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BFF2059-E214-4803-B625-21CE3263CF7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DC6CF7B-C66D-4D09-951F-1516282188EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DC6CF7B-C66D-4D09-951F-1516282188EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DC6CF7B-C66D-4D09-951F-1516282188EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DC6CF7B-C66D-4D09-951F-1516282188EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE812A0C-771C-4EEA-BA39-F429E045D0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE812A0C-771C-4EEA-BA39-F429E045D0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE812A0C-771C-4EEA-BA39-F429E045D0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE812A0C-771C-4EEA-BA39-F429E045D0CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F098C741-8B14-4D2E-8BC9-1125072CC931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F098C741-8B14-4D2E-8BC9-1125072CC931}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F098C741-8B14-4D2E-8BC9-1125072CC931}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F098C741-8B14-4D2E-8BC9-1125072CC931}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AA64DA3-4902-4A49-A547-0B7DA3B1A4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AA64DA3-4902-4A49-A547-0B7DA3B1A4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AA64DA3-4902-4A49-A547-0B7DA3B1A4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AA64DA3-4902-4A49-A547-0B7DA3B1A4C8}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 98f1feb474bc06c1ac3fcae03211fd492ab72b62
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-<<<<<<< HEAD
 		SolutionGuid = {08D9A628-5C15-45C4-BF79-99E0A40507DC}
-=======
-		SolutionGuid = {88C00A98-D43A-4832-B0EE-647BF00A3542}
->>>>>>> 98f1feb474bc06c1ac3fcae03211fd492ab72b62
 	EndGlobalSection
 EndGlobal

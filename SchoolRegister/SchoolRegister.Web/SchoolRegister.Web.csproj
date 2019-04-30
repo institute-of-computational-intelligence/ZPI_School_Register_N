@@ -12,10 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.6.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-<<<<<<< HEAD
-=======
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
->>>>>>> 98f1feb474bc06c1ac3fcae03211fd492ab72b62
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
 
@@ -27,14 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolRegister.Services\SchoolRegister.Services.csproj" />
-<<<<<<< HEAD
-=======
-    <ProjectReference Include="..\SchoolRegister.ViewModels\SchoolRegister.ViewModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
->>>>>>> 98f1feb474bc06c1ac3fcae03211fd492ab72b62
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
