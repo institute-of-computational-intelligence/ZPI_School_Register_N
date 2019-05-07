@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SchoolRegister.ViewModels.DTOs
 {
-    public class AddOrUpdateGroupDto
+    class AttachDetachStudentToGroupDto
     {
-        public int? Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public int StudentId { get; set; }
+        [Required]
+        public int GroupId { get; set; }
     }
 }
-
