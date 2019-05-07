@@ -12,8 +12,9 @@ namespace SchoolRegister.DAL.EF
         private readonly ConnectionStringDto _connectionStringDto;
         // Table properties e.g
         public virtual DbSet<Grade> Grade { get; set; }
-        public object Subjects { get; set; }
-        public object Groups { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<SubjectGroup> SubjectGroup { get; set; }
 
         // other table properties
         // ……

@@ -12,7 +12,7 @@ namespace SchoolRegister.BLL.Entities
         public IList<Grade> Grades { get; set; }
         public Group Group { get; set; }
         [ForeignKey("Group")]
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
         public Parent Parent { get; set; }
         public int? ParentId { get; set; }
         
