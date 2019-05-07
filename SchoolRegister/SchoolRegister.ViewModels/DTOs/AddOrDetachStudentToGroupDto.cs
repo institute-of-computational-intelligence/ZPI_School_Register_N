@@ -13,4 +13,4 @@ namespace SchoolRegister.ViewModels.DTOs
         public int GroupId { get; set; }
     }
 }
-}
+
