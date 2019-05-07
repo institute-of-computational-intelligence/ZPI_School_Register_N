@@ -13,6 +13,7 @@ namespace SchoolRegister.DAL.EF
         // Table properties e.g
         public virtual DbSet<Grade> Grade { get; set; }
         public object Subjects { get; set; }
+        public object Groups { get; set; }
 
         // other table properties
         // ……

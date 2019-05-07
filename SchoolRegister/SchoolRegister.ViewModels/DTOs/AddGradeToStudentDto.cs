@@ -1,19 +1,23 @@
-﻿using System;
+﻿using SchoolRegister.BLL.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SchoolRegister.ViewModels.DTOs
 {
-     public class SendEmailToParentDto
+    public class AddGradeToStudentDto
     {
         [Required]
-        public int SenderId { get; set; }
-        [Required]
         public int StudentId { get; set; }
+
         [Required]
-        public string Title { get; set; }
+        public int SubjectId { get; set; }
+
         [Required]
-        public string Content { get; set; }
+        public GradeScale GradeValue { get; set; }
+
+        [Required]
+        public int TeacherId { get; set; }
     }
 }

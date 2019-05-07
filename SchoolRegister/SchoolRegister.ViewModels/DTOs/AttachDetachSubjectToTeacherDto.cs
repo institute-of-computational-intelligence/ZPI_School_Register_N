@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SchoolRegister.ViewModels.DTOs
 {
-    class AttachDetachSubjectToTeacherDto
+     public class AttachDetachSubjectToTeacherDto
     {
         [Required]
         public int SubjectId { get; set; }
