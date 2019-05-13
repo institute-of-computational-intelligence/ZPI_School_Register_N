@@ -14,5 +14,7 @@ namespace SchoolRegister.BLL.Entities
         { get; set; }
         public Teacher Teacher
         { get; set; }
+        public virtual IList<SubjectGroup> SubjectGroups
+        { get; set; }
     }
 }

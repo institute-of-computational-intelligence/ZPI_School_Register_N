@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
  // bla blaasas
 namespace SchoolRegister.BLL.Entities
 {
     public class Grade
     {
+        [Key]
         public DateTime DateOfIssue
         { get; set; }
         public GradeScale GradeValue

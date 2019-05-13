@@ -10,5 +10,9 @@ namespace SchoolRegister.BLL.Entities
         { get; set; }
         public string Name
         { get; set; }
+        public virtual IList<Student> Students
+        { get; set; }
+        public virtual IList<SubjectGroup> SubjectGroups
+        { get; set; }
     }
 }
