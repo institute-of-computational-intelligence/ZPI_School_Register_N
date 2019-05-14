@@ -6,7 +6,7 @@ namespace SchoolRegister.BLL.Entities
 {
     public class Parent : User
     {
-        public IList<Student> Students
+        public virtual IList<Student> Students
         { get; set; }
     }
 }

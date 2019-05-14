@@ -8,6 +8,6 @@ namespace SchoolRegister.BLL.Entities
     public class Role : IdentityRole<int>
     {
        Role() { }
-       Role(string name) { }
+       Role(string name) :base(name) { }
     }
 }
