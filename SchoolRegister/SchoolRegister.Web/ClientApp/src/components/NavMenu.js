@@ -27,7 +27,7 @@ export class NavMenu extends Component {
                     <Nav>
                         <LinkContainer to={'/'} exact>
                             <NavItem>
-                            <Glyphicon glyph='glyphicon glyphicon-th' />  Fetch Data
+                            <Glyphicon glyph='glyphicon glyphicon-th' />  Subjects
                             </NavItem>
                         </LinkContainer>
                         <NavItem>

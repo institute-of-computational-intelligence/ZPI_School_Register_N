@@ -7,7 +7,6 @@ using SchoolRegister.DAL.EF;
 namespace SchoolRegister.Web.Controllers
 {
     [Authorize]
-    // [EnableCors("AllowCors")]
     [Route("api/[controller]")]
     [Route("api/[controller]/[action]")]
     public abstract class BaseController : Controller

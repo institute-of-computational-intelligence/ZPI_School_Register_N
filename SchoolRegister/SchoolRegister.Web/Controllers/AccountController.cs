@@ -155,7 +155,7 @@ namespace SchoolRegister.Web.Controllers
                 return BadRequest("Invalid credentials");
             }
 
-            int tokenExpirationMinutes = 20;
+            var tokenExpirationMinutes = 20;
             var claims = new[]
             {
                 new Claim("username", applicationUser.Login),
@@ -164,15 +164,22 @@ namespace SchoolRegister.Web.Controllers
                 new Claim(JwtRegisteredClaimNames.Exp,
                     ((long)((DateTime.Now.AddMinutes(tokenExpirationMinutes) - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds)).ToString())
             };
+            var claimsIdentity = new ClaimsIdentity(claims, "Token");
+            var user = _dbContext.Users.FirstOrDefault(u => u.UserName == applicationUser.Login);
+            if (user == null) return StatusCode(500, "Given user does not exist in the database.");
+            var roles = _userManager.GetRolesAsync(user).Result;
+            claimsIdentity.AddClaims(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-            var token = new JwtSecurityToken(
-                new JwtHeader(new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)),
-                    SecurityAlgorithms.HmacSha256)),
-                new JwtPayload(claims));
-
+            var token = new JwtSecurityToken
+            (
+                _jwtOptions.Issuer,
+                _jwtOptions.Issuer,
+                claimsIdentity.Claims,
+                expires: DateTime.Now.AddMinutes(tokenExpirationMinutes),
+                notBefore: DateTime.Now,
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)), SecurityAlgorithms.HmacSha256)
+            );
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(token);
-
             var response = new
             {
                 access_token = encodedJwt,

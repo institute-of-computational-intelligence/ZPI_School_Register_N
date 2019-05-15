@@ -14,6 +14,7 @@ namespace SchoolRegister.Web.Configuration
             Mapper.Initialize(mapper =>
             {
                 mapper.CreateMap<User, BaseUserVm>();
+                  //.ForMember(dest=>dest.Roles, y=>y.MapFrom(src=>src.
                 mapper.CreateMap<RegisterUserDto, User>();
                 mapper.CreateMap<AddOrUpdateSubjectDto, Subject>();
                 mapper.CreateMap<Group, GroupVm>();
