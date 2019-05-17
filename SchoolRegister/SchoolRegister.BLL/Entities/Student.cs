@@ -21,17 +21,12 @@ namespace SchoolRegister.BLL.Entities
             .GroupBy(g => g.Subject.Name)
             .Select(g => new { SubjectName = g.Key, GradeList = g.Select(x => x.GradeValue).ToList() })
             .ToDictionary(x => x.SubjectName, x => x.GradeList);
-        public IList<Grade> Grades
-        { get; set; }
-        public Group Group
-        { get; set; }
+        public IList<Grade> Grades { get; set; }
+        public Group Group { get; set; }
         [ForeignKey("Group")]
-        public int GroupId
-        { get; set; }
-        public Parent Parent
-        { get; set; }
+        public int GroupId { get; set; }
+        public Parent Parent { get; set; }
         [ForeignKey("Parent")]
-        public int? ParentId
-        { get; set; }         
+        public int? ParentId { get; set; }         
     }
 }
