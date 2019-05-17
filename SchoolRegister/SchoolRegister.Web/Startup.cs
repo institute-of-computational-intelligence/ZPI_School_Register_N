@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SchoolRegister.BLL.Entities;
 using SchoolRegister.DAL.EF;
@@ -164,7 +165,7 @@ namespace SchoolRegister.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -174,6 +175,9 @@ namespace SchoolRegister.Web
             {
                 app.UseExceptionHandler("/Error");
             }
+            loggerFactory.AddFile("Log/SchoolRegister-{Date}.txt");
+            app.UseSession();
+            app.UseAuthentication();
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
