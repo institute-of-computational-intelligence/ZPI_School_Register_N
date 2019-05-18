@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React from "react";
 export default class Dialog extends React.Component {
     render() {
         return (
@@ -22,21 +22,11 @@ export default class Dialog extends React.Component {
                     <div className="k-content k-window-content k-dialog-content">
                         {this.props.children}
                     </div>
-                    <div
-                        className="k-button-group k-dialog-buttongroup k-dialog-button-layout-stretched"
-                    >
-                        <button
-                            className="k-button"
-                            onClick={() => this.props.cancel()}
-                        >
+                    <div className="k-button-group k-dialog-buttongroup k-dialog-button-layout-stretched">
+                        <button className="k-button" onClick={() => this.props.cancel()}>
                             Cancel
-                        </button>
-                        <button
-                            className="k-button k-primary"
-                            onClick={() => this.props.ok()}
-                        >
-                            Save
-                        </button>
+            </button>
+                        <button className="k-button k-primary" onClick={() => this.props.ok()}>Save</button>
                     </div>
                 </div>
             </div>
