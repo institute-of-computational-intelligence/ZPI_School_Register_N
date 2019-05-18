@@ -23,7 +23,9 @@ namespace SchoolRegister.DAL.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_connectionStringDto.ConnectionString);
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(_connectionStringDto.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

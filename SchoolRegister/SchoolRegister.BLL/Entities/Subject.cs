@@ -15,7 +15,7 @@ namespace SchoolRegister.BLL.Entities
         [Required]
         public string Name { get; set; }
         public virtual IList<SubjectGroup> SubjectGroups { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual Teacher Teacher { get; set; }
         [ForeignKey("TeacherId")]
         public int TeacherId { get; set; }
     }
