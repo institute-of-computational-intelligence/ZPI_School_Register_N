@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolRegister.BLL.Entities
 {
@@ -13,5 +11,6 @@ namespace SchoolRegister.BLL.Entities
         public virtual Group Group { get; set; }
 
         public int GroupId { get; set; }
+
     }
 }

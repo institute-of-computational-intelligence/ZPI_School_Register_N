@@ -1,7 +1,5 @@
-﻿using SchoolRegister.DAL.EF;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using SchoolRegister.DAL.EF;
 
 namespace SchoolRegister.Services.Services
 {
@@ -9,11 +7,13 @@ namespace SchoolRegister.Services.Services
     {
         protected readonly ApplicationDbContext _dbContext;
         private bool _disposed;
+
         public BaseService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             _disposed = false;
         }
+
         public void Dispose()
         {
             Dispose(true);

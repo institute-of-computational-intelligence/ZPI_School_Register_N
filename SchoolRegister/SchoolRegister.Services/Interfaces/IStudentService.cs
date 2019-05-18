@@ -1,9 +1,9 @@
-﻿using SchoolRegister.BLL.Entities;
-using SchoolRegister.ViewModels.VMs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using SchoolRegister.BLL.Entities;
+using SchoolRegister.ViewModels.VMs;
 
 namespace SchoolRegister.Services.Interfaces
 {

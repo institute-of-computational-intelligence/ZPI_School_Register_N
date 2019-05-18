@@ -6,10 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SchoolRegister.BLL\SchoolRegister.BLL.csproj" />
     <ProjectReference Include="..\SchoolRegister.DAL\SchoolRegister.DAL.csproj" />
     <ProjectReference Include="..\SchoolRegister.ViewModels\SchoolRegister.ViewModels.csproj" />
   </ItemGroup>
