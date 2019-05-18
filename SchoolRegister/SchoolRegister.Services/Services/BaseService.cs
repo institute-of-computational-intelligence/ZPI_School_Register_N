@@ -1,17 +1,19 @@
-﻿using SchoolRegister.DAL.EF;
-using System;
+﻿using System;
+using SchoolRegister.DAL.EF;
 
 namespace SchoolRegister.Services.Services
 {
-    public abstract class BaseService : IDisposable
+    public abstract class BaseService: IDisposable
     {
         protected readonly ApplicationDbContext _dbContext;
         private bool _disposed;
+
         public BaseService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             _disposed = false;
         }
+
         public void Dispose()
         {
             Dispose(true);
