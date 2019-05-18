@@ -13,6 +13,8 @@ namespace SchoolRegister.Web.Configuration
         {
             Mapper.Initialize(mapper =>
             {
+                mapper.CreateMap<User, BaseUserVm>();
+                mapper.CreateMap<RegisterUserDto, User>();
                 mapper.CreateMap<AddOrUpdateSubjectDto, Subject>();
                 mapper.CreateMap<Group, GroupVm>();
                 mapper.CreateMap<Subject, SubjectVm>()
