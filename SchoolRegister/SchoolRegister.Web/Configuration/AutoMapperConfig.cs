@@ -27,7 +27,8 @@ namespace SchoolRegister.Web.Configuration
                 mapper.CreateMap<Student, StudentVm>()
                     .ForMember(dest => dest.GroupName, x => x.MapFrom(src => src.Group.Name))
                     .ForMember(dest => dest.ParentName,
-                        x => x.MapFrom(src => $"{src.Parent.FirstName} {src.Parent.LastName}"));
+                        x => x.MapFrom(src => $"{src.Parent.FirstName} {src.Parent.LastName}"))
+                    .ForMember(dest => dest.Name, y => y.MapFrom(src => src.UserName));
                 mapper.CreateMap<AddGradeToStudentDto, Grade>()
                     .ForMember(dest => dest.DateOfIssue, y => y.MapFrom(src => DateTime.Now));
                 mapper.CreateMap<GroupVm, AddOrUpdateGroupDto>();

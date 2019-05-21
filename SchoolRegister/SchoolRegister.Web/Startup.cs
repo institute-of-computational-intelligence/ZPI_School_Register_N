@@ -2,12 +2,15 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +23,8 @@ using SchoolRegister.Services.Interfaces;
 using SchoolRegister.Services.Services;
 using SchoolRegister.ViewModels.VMs;
 using SchoolRegister.Web.Configuration;
+using SchoolRegister.Web.Hubs;
+using SchoolRegister.Web.Utils;
 
 namespace SchoolRegister.Web
 {
@@ -103,9 +108,9 @@ namespace SchoolRegister.Web
             });
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = "Jwt";
-                options.DefaultChallengeScheme = "Jwt";
-            }).AddJwtBearer("Jwt", options =>
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer( options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -120,6 +125,23 @@ namespace SchoolRegister.Web
                     ValidateLifetime = true, //validate the expiration and not before values in the token
 
                     ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+
+                        // If the request is for our hub...
+                       // var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken))// &&
+                          //  (path.StartsWithSegments("/hubs/chatHub")))
+                        {
+                            // Read the token out of the query string
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
+                    }
                 };
             });
             services.AddScoped((serviceProvider) =>
@@ -158,6 +180,8 @@ namespace SchoolRegister.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddSignalR();
+            services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -177,18 +201,23 @@ namespace SchoolRegister.Web
                 app.UseExceptionHandler("/Error");
             }
             loggerFactory.AddFile("Log/SchoolRegister-{Date}.txt");
-            app.UseSession();
-            app.UseAuthentication();
+          //  app.UseSession();
+            
+            app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseSpaStaticFiles();
-
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
+         
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

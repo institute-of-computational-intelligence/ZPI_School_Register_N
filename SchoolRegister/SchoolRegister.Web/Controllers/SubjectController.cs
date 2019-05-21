@@ -19,7 +19,7 @@ namespace SchoolRegister.Web.Controllers
 
     namespace SchoolRegister.Web.Controllers
     {
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Student, Teacher")]
         public class SubjectController : BaseController
         {
             private readonly ISubjectService _subjectService;

@@ -17,7 +17,8 @@ ReactDOM.render(
     <Router basename={baseUrl}>
         <div>
             <Route exact path="/" component={App} />
-            <Route path="/fetchdata" component={App} />
+            <Route path="/subject" component={App} />
+            <Route path="/chat" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
         </div>

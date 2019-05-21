@@ -30,6 +30,11 @@ export class NavMenu extends Component {
                             <Glyphicon glyph='glyphicon glyphicon-th' />  Subjects
                             </NavItem>
                         </LinkContainer>
+                        <LinkContainer to={'/chat'} exact>
+                            <NavItem>
+                                <Glyphicon glyph='glyphicon glyphicon-th' />  Chat
+                            </NavItem>
+                        </LinkContainer>
                         <NavItem>
                             <div >
                                 <div className="row">
